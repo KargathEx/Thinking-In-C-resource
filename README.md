@@ -10,3 +10,5 @@
 1.学习是资料的加工和整理的过程    
 2.学习的目标是在需要的时候能正常回忆起来,记不住代码是正常的，以代码片段形式存在的笔记是有意义的.    
 3.做题非必须，要善于利用出题者来归纳问题。    
+
+原书online版本 [卷1](https://web.mit.edu/merolish/ticpp/TicV2.html),[卷2](https://web.mit.edu/merolish/ticpp/TicV2.html#_Toc53985710)

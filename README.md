@@ -12,3 +12,4 @@
 3.做题非必须，要善于利用出题者来归纳问题。    
 
 原书online版本 [卷1](https://web.mit.edu/merolish/ticpp/TicV2.html),[卷2](https://web.mit.edu/merolish/ticpp/TicV2.html#_Toc53985710)
+[another](https://www.fi.muni.cz/usr/jkucera/tic/tic_c.html)

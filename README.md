@@ -15,8 +15,10 @@
 [another](https://www.fi.muni.cz/usr/jkucera/tic/tic_c.html)
 
 #### 散记
-[打印优先队列](https://www.linuxtopia.org/online_books/programming_books/c++_practical_programming/c++_practical_programming_189.html)只有两种办法:
-访问c然后sort [spec规定就是c](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/include/bits/stl_queue.h#L145)
+1.[打印优先队列](https://www.linuxtopia.org/online_books/programming_books/c++_practical_programming/c++_practical_programming_189.html)只有两种办法:  
+1)访问c然后sort [spec规定就是c](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/include/bits/stl_queue.h#L145)  
+2.复制一份pqg,挨个pop()。
+关于1)的方法如下:
 ```cpp
 //: C07:PriorityQueue4.cpp
 // Manipulating the underlying implementation.
@@ -43,9 +45,9 @@ int main() {
 }
 
 ```
-code from [here](https://www.linuxtopia.org/online_books/programming_books/c++_practical_programming/c++_practical_programming_189.html)
-想要print sorted的话还需要对复制的vector sort一下。
-如果不想仅仅是int,有个[长得好看版](https://stackoverflow.com/a/12886393/13792395)
+code from [here](https://www.linuxtopia.org/online_books/programming_books/c++_practical_programming/c++_practical_programming_189.html)   
+想要print sorted的话还需要对复制的vector sort一下。   
+如果考虑通用性,有个[长得好看版](https://stackoverflow.com/a/12886393/13792395)   
 ```cpp
 template <class T, class S, class C>
 S& Container(priority_queue<T, S, C>& q) {

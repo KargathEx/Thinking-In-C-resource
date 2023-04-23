@@ -13,3 +13,50 @@
 
 原书online版本 [卷1](https://web.mit.edu/merolish/ticpp/TicV2.html),[卷2](https://web.mit.edu/merolish/ticpp/TicV2.html#_Toc53985710)
 [another](https://www.fi.muni.cz/usr/jkucera/tic/tic_c.html)
+
+#### 散记
+[打印优先队列](https://www.linuxtopia.org/online_books/programming_books/c++_practical_programming/c++_practical_programming_189.html)只有两种办法:
+访问c然后sort [spec规定就是c](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/include/bits/stl_queue.h#L145)
+```cpp
+//: C07:PriorityQueue4.cpp
+// Manipulating the underlying implementation.
+class PQI : public priority_queue<int> {
+public:
+  vector<int>& impl() { return c; } 
+  //c 是priority_queue中protected的
+  //并且有标识符，根据标准C++规格说明，该标识符被命名为c
+  //public继承来的除了基类的private,别的都可以摸,所以可以这样用.
+};
+
+int main() {
+  PQI pqi;
+  srand(time(0));
+  for (int i = 0; i < 100; i++)
+    pqi.push(rand() % 25);
+  copy(pqi.impl().begin(), pqi.impl().end(),
+    ostream_iterator<int>(cout, " "));
+  cout << endl;
+  while (!pqi.empty()) {
+    cout << pqi.top() << ' ';
+    pqi.pop();
+  }
+}
+
+```
+code from [here](https://www.linuxtopia.org/online_books/programming_books/c++_practical_programming/c++_practical_programming_189.html)
+想要print sorted的话还需要对复制的vector sort一下。
+如果不想仅仅是int,有个[长得好看版](https://stackoverflow.com/a/12886393/13792395)
+```cpp
+template <class T, class S, class C>
+S& Container(priority_queue<T, S, C>& q) {
+
+  struct HackedQueue : private priority_queue<T, S, C>
+  {
+    static S& Container(priority_queue<T, S, C>& q) 
+    {
+      return q.* &HackedQueue::c;  // == q-> pointer,where pointer= (&HackedQueue::c)
+    }
+  };
+  return HackedQueue::Container(q);
+}
+```
